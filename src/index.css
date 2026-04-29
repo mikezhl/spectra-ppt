@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+:root {
+  --microsoft-blue: #0078d4;
+  --microsoft-blue-dark: #005a9e;
+  --microsoft-blue-soft: #e5f2fb;
+  --ink: #111827;
+  --muted: #5f6b7a;
+  --line: #d9e2ec;
+  --paper: #f6f8fb;
+  --white: #ffffff;
+  --success: #107c41;
+  --warning: #f2c94c;
+  font-family:
+    Inter, "Segoe UI", "Microsoft YaHei UI", "PingFang SC", system-ui,
+    sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    linear-gradient(180deg, rgba(229, 242, 251, 0.72), transparent 520px),
+    var(--paper);
+}
+
+button {
+  font: inherit;
+}
+
+.deck-shell {
+  width: 100%;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.stage-spacer {
+  width: var(--scaled-stage-width);
+  height: var(--stage-height);
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+}
+
+.deck-stage {
+  width: var(--stage-width);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scale(var(--stage-scale));
+  transform-origin: top left;
+}
+
+.deck-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.deck-frame:nth-child(even) {
+  background: #f8fbfe;
+}
+
+.deck-frame::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(1180px, calc(100% - 48px));
+  height: 1px;
+  transform: translateX(-50%);
+  background: var(--line);
+  opacity: 0.7;
+}
+
+.section-1 {
+  background:
+    linear-gradient(90deg, rgba(0, 120, 212, 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(0, 120, 212, 0.04) 1px, transparent 1px),
+    var(--white);
+  background-size: 96px 96px;
+}
+
+.slide-content {
+  position: relative;
+  z-index: 1;
+  width: 1180px;
+  margin: 0 auto;
+  padding: 88px 0;
+}
+
+.section-1 .slide-content {
+  min-height: 64vh;
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.t-title {
+  font-size: 56px;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.t-body {
+  font-size: 24px;
+  line-height: 1.36;
+  letter-spacing: 0;
+}
+
+.t-caption {
+  font-size: 17px;
+  line-height: 1.46;
+  letter-spacing: 0;
+}
+
+.deck-label {
+  color: var(--microsoft-blue);
+  font-weight: 700;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.panel-blue {
+  background: var(--microsoft-blue-soft);
+  border: 1px solid rgba(0, 120, 212, 0.24);
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  color: var(--microsoft-blue);
+  background: var(--microsoft-blue-soft);
+  border: 1px solid rgba(0, 120, 212, 0.18);
+  border-radius: 8px;
+}
+
+.blue-rule {
+  width: 80px;
+  height: 6px;
+  background: var(--microsoft-blue);
+  border-radius: 0;
+}
+
+.flat-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  height: 60px;
+  padding: 0 28px;
+  border-radius: 8px;
+  border: 1px solid var(--microsoft-blue);
+  background: var(--microsoft-blue);
+  color: white;
+  text-decoration: none;
+  transition:
+    transform 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease;
+}
+
+.flat-button:hover {
+  background: var(--microsoft-blue-dark);
+  border-color: var(--microsoft-blue-dark);
+  transform: translateY(-2px);
+}
+
+.ghost-button {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+}
+
+.ghost-button:hover,
+.ghost-button.is-active {
+  border-color: var(--microsoft-blue);
+  color: var(--microsoft-blue);
+  background: var(--microsoft-blue-soft);
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 680ms ease,
+    transform 680ms ease,
+    border-color 260ms ease,
+    background 260ms ease;
+  transition-delay: var(--delay, 0ms);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.data-line {
+  position: relative;
+}
+
+.data-line::before {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 56px;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+
+.bar-fill {
+  transform-origin: left center;
+  animation: barGrow 1100ms ease forwards;
+}
+
+.pulse-dot {
+  animation: pulseDot 1800ms ease-in-out infinite;
+}
+
+@keyframes barGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.78;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

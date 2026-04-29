@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+coverage/
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# QA / browser automation artifacts
+qa-artifacts/
+qa-*.png
+qa-*.jpg
+qa-*.jpeg
+qa-*.webp
+vite-dev*.log
+.edge-qa-profile/
+.playwright/
+playwright-report/
+test-results/
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
