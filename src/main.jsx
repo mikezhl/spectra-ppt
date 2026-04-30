@@ -1,131 +1,215 @@
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { Section01Cover } from "./sections/Section01Cover.jsx";
-import { Section02Problem } from "./sections/Section02Problem.jsx";
-import { Section03WhyNow } from "./sections/Section03WhyNow.jsx";
-import { Section04Era } from "./sections/Section04Era.jsx";
-import { Section05DataLayer } from "./sections/Section05DataLayer.jsx";
-import { Section06AgentLayer } from "./sections/Section06AgentLayer.jsx";
-import { Section07LiveDemo } from "./sections/Section07LiveDemo.jsx";
-import { Section08Competition } from "./sections/Section08Competition.jsx";
-import { Section09BusinessModel } from "./sections/Section09BusinessModel.jsx";
-import { Section10Team } from "./sections/Section10Team.jsx";
-import { Section11MarketFinancials } from "./sections/Section11MarketFinancials.jsx";
-import { Section12Vision } from "./sections/Section12Vision.jsx";
-
-const FONT_TOKENS = {
-  title: "t-title",
-  body: "t-body",
-  caption: "t-caption",
-};
+import { Vertical01Hero } from "./vertical/Vertical01Hero.jsx";
+import { Vertical02Problem } from "./vertical/Vertical02Problem.jsx";
+import { Vertical03WhyNow } from "./vertical/Vertical03WhyNow.jsx";
+import { Vertical04Era } from "./vertical/Vertical04Era.jsx";
+import { Vertical05DataLayer } from "./vertical/Vertical05DataLayer.jsx";
+import { Vertical06AgentLayer } from "./vertical/Vertical06AgentLayer.jsx";
+import { Vertical07LiveDemo } from "./vertical/Vertical07LiveDemo.jsx";
+import { Vertical08Competition } from "./vertical/Vertical08Competition.jsx";
+import { Vertical09BusinessTeam } from "./vertical/Vertical09BusinessTeam.jsx";
+import { Vertical10MarketVision } from "./vertical/Vertical10MarketVision.jsx";
+import { Slide01Hero } from "./slides/Slide01Hero.jsx";
+import { Slide02Problem } from "./slides/Slide02Problem.jsx";
+import { Slide03WhyNow } from "./slides/Slide03WhyNow.jsx";
+import { Slide04Era } from "./slides/Slide04Era.jsx";
+import { Slide05Solution } from "./slides/Slide05Solution.jsx";
+import { Slide06Demo } from "./slides/Slide06Demo.jsx";
+import { Slide07Competition } from "./slides/Slide07Competition.jsx";
+import { Slide08Business } from "./slides/Slide08Business.jsx";
+import { Slide09TeamMarket } from "./slides/Slide09TeamMarket.jsx";
+import { Slide10Vision } from "./slides/Slide10Vision.jsx";
 
 const STAGE_WIDTH = 1440;
+const SLIDE_HEIGHT = 810;
 
-const deckSections = [
-  Section01Cover,
-  Section02Problem,
-  Section03WhyNow,
-  Section04Era,
-  Section05DataLayer,
-  Section06AgentLayer,
-  Section07LiveDemo,
-  Section08Competition,
-  Section09BusinessModel,
-  Section10Team,
-  Section11MarketFinancials,
-  Section12Vision,
+const verticalSections = [
+  Vertical01Hero,
+  Vertical02Problem,
+  Vertical03WhyNow,
+  Vertical04Era,
+  Vertical05DataLayer,
+  Vertical06AgentLayer,
+  Vertical07LiveDemo,
+  Vertical08Competition,
+  Vertical09BusinessTeam,
+  Vertical10MarketVision,
 ];
 
-function useRevealMotion() {
-  useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll("[data-reveal]"));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          }
-        });
-      },
-      { root: null, threshold: 0.14 },
-    );
+const slideSections = [
+  Slide01Hero,
+  Slide02Problem,
+  Slide03WhyNow,
+  Slide04Era,
+  Slide05Solution,
+  Slide06Demo,
+  Slide07Competition,
+  Slide08Business,
+  Slide09TeamMarket,
+  Slide10Vision,
+];
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
-}
-
-function useFixedStageScale() {
-  const stageRef = useRef(null);
-  const [metrics, setMetrics] = useState({ height: 0, scale: 1 });
+function useWidthScale(width) {
+  const [scale, setScale] = useState(1);
 
   useLayoutEffect(() => {
-    const updateMetrics = () => {
-      const viewportGutter = window.innerWidth < STAGE_WIDTH ? 12 : 0;
-      const scale = Math.min(
-        1,
-        Math.max(0.24, (window.innerWidth - viewportGutter) / STAGE_WIDTH),
-      );
-      const height = stageRef.current?.offsetHeight ?? 0;
-      setMetrics({ height, scale });
+    const update = () => {
+      setScale(Math.min(1, window.innerWidth / width));
     };
 
-    updateMetrics();
-    const observer = new ResizeObserver(updateMetrics);
-    if (stageRef.current) observer.observe(stageRef.current);
-    window.addEventListener("resize", updateMetrics);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [width]);
 
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", updateMetrics);
-    };
-  }, []);
-
-  return { stageRef, ...metrics };
+  return scale;
 }
 
-function DeckFrame({ children, index }) {
+function useSlideScale() {
+  const [scale, setScale] = useState(1);
+
+  useLayoutEffect(() => {
+    const update = () => {
+      const scaleX = window.innerWidth / STAGE_WIDTH;
+      const scaleY = window.innerHeight / SLIDE_HEIGHT;
+      setScale(Math.min(1, scaleX, scaleY));
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return scale;
+}
+
+function useSlideNavigation(active, setActive, count, mode) {
+  useEffect(() => {
+    if (mode !== "slides") return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+        event.preventDefault();
+        setActive((value) => Math.min(count - 1, value + 1));
+      }
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+        event.preventDefault();
+        setActive((value) => Math.max(0, value - 1));
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [active, count, mode, setActive]);
+}
+
+function ModeToggle({ mode, setMode }) {
   return (
-    <section
-      id={`slide-${index}`}
-      className={`deck-frame section-${index}`}
-      aria-label={`Spectra pitch deck section ${index}`}
-    >
-      {children}
-    </section>
+    <div className="mode-toggle" aria-label="版本切换">
+      <button
+        className={mode === "vertical" ? "is-active" : ""}
+        onClick={() => setMode("vertical")}
+      >
+        竖版
+      </button>
+      <button
+        className={mode === "slides" ? "is-active" : ""}
+        onClick={() => setMode("slides")}
+      >
+        横版
+      </button>
+    </div>
   );
 }
 
-function App() {
-  useRevealMotion();
-  const { height, scale, stageRef } = useFixedStageScale();
-
-  const sections = useMemo(() => deckSections, []);
+function VerticalVersion() {
+  const scale = useWidthScale(STAGE_WIDTH);
+  const sections = useMemo(() => verticalSections, []);
 
   return (
-    <main
-      className="deck-shell"
+    <div
+      className="vertical-shell"
       style={{
-        "--stage-height": `${height * scale}px`,
-        "--stage-scale": scale,
+        "--vertical-scale": scale,
         "--stage-width": `${STAGE_WIDTH}px`,
         "--scaled-stage-width": `${STAGE_WIDTH * scale}px`,
       }}
     >
-      <div className="stage-spacer">
-        <div className="deck-stage" ref={stageRef}>
-          {sections.map((Section, index) => (
-            <DeckFrame key={index} index={index + 1}>
-              <Section
-                index={index + 1}
-                total={sections.length}
-                fonts={FONT_TOKENS}
-              />
-            </DeckFrame>
-          ))}
+      <div className="vertical-stage">
+        {sections.map((Section, index) => (
+          <Section
+            key={index}
+            index={index + 1}
+            total={sections.length}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SlideVersion({ active, setActive }) {
+  const scale = useSlideScale();
+  const ActiveSlide = slideSections[active];
+
+  return (
+    <div
+      className="slide-shell"
+      style={{
+        "--slide-scale": scale,
+        "--slide-width": `${STAGE_WIDTH}px`,
+        "--slide-height": `${SLIDE_HEIGHT}px`,
+        "--scaled-slide-width": `${STAGE_WIDTH * scale}px`,
+        "--scaled-slide-height": `${SLIDE_HEIGHT * scale}px`,
+      }}
+    >
+      <div className="slide-spacer">
+        <div className="slide-stage">
+          <ActiveSlide
+            index={active + 1}
+            total={slideSections.length}
+          />
         </div>
       </div>
+      <div className="slide-dots" aria-label="幻灯片进度">
+        {slideSections.map((_, index) => (
+          <button
+            key={index}
+            className={active === index ? "is-active" : ""}
+            aria-label={`切换到第 ${index + 1} 页`}
+            onClick={() => setActive(index)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [mode, setMode] = useState("vertical");
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useSlideNavigation(activeSlide, setActiveSlide, slideSections.length, mode);
+
+  useEffect(() => {
+    document.body.classList.toggle("is-slide-mode", mode === "slides");
+    document.documentElement.classList.toggle("is-slide-mode", mode === "slides");
+    if (mode === "slides") window.scrollTo(0, 0);
+    return () => {
+      document.body.classList.remove("is-slide-mode");
+      document.documentElement.classList.remove("is-slide-mode");
+    };
+  }, [mode]);
+
+  return (
+    <main className={`app-root ${mode === "slides" ? "is-slides" : "is-vertical"}`}>
+      <ModeToggle mode={mode} setMode={setMode} />
+      {mode === "vertical" ? (
+        <VerticalVersion />
+      ) : (
+        <SlideVersion active={activeSlide} setActive={setActiveSlide} />
+      )}
     </main>
   );
 }
