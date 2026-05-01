@@ -5,28 +5,44 @@ const roles = [
   {
     title: "老师",
     icon: GraduationCap,
-    items: ["家长沟通低效", "学情数据分散", "报告、表格、通知消耗大量时间"],
+    items: [
+      "家长沟通低效，耗费大量精力",
+      "学情分散：成绩在系统、表现在脑子里、活动在纸上",
+      "写报告、填表、发通知、写评语占据大量时间",
+    ],
   },
   {
     title: "家长",
     icon: UsersRound,
-    items: ["反馈滞后", "评价模糊", "无法获得个性化建议"],
+    items: [
+      "无法实时了解孩子表现，学校反馈不及时",
+      "收到的反馈模糊、评价敷衍、数据不足",
+      "长期处于信息滞后状态",
+    ],
   },
   {
     title: "管理层",
     icon: School,
-    items: ["数据孤岛", "全校趋势依赖人工汇总", "决策缺少数据支撑"],
+    items: [
+      "数据分散，查询困难",
+      "想看全校趋势要手动拉表、人工汇总",
+      "决策靠经验，缺乏数据支撑",
+    ],
   },
   {
     title: "学生",
     icon: UserRound,
-    items: ["成长经历缺少记录", "学习路径千人一面", "升学材料难以沉淀"],
+    items: [
+      "高中大量有价值的经历没有被系统记录",
+      "毕业后难以回忆、难以呈现",
+      "作业千人一面，缺乏个性化学习路径",
+    ],
   },
 ];
 
 export function Vertical02Problem(props) {
   return (
-    <VerticalSection {...props} title="四方痛点">
+    <VerticalSection {...props} title="四方痛点：学校里每个人都在受苦">
       <div className="v-grid-four">
         {roles.map((role) => (
           <VerticalCell key={role.title} title={role.title} icon={role.icon}>

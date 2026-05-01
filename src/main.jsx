@@ -9,8 +9,10 @@ import { Vertical05DataLayer } from "./vertical/Vertical05DataLayer.jsx";
 import { Vertical06AgentLayer } from "./vertical/Vertical06AgentLayer.jsx";
 import { Vertical07LiveDemo } from "./vertical/Vertical07LiveDemo.jsx";
 import { Vertical08Competition } from "./vertical/Vertical08Competition.jsx";
-import { Vertical09BusinessTeam } from "./vertical/Vertical09BusinessTeam.jsx";
-import { Vertical10MarketVision } from "./vertical/Vertical10MarketVision.jsx";
+import { Vertical09Business } from "./vertical/Vertical09Business.jsx";
+import { Vertical10Team } from "./vertical/Vertical10Team.jsx";
+import { Vertical11MarketAsk } from "./vertical/Vertical11MarketAsk.jsx";
+import { Vertical12Vision } from "./vertical/Vertical12Vision.jsx";
 import { Slide01Hero } from "./slides/Slide01Hero.jsx";
 import { Slide02Problem } from "./slides/Slide02Problem.jsx";
 import { Slide03WhyNow } from "./slides/Slide03WhyNow.jsx";
@@ -34,8 +36,10 @@ const verticalSections = [
   Vertical06AgentLayer,
   Vertical07LiveDemo,
   Vertical08Competition,
-  Vertical09BusinessTeam,
-  Vertical10MarketVision,
+  Vertical09Business,
+  Vertical10Team,
+  Vertical11MarketAsk,
+  Vertical12Vision,
 ];
 
 const slideSections = [
