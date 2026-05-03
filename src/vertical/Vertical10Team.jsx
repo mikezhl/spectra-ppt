@@ -1,8 +1,12 @@
 import { VerticalSection } from "./VerticalShared.jsx";
+import ceoAvatar from "../assets/founders/ceo-li-yi-avatar.jpg";
+import ctoAvatar from "../assets/founders/cto-zhu-haolang-avatar.jpg";
 
 const founders = [
   {
     initial: "李",
+    avatar: ceoAvatar,
+    avatarClass: "is-ceo",
     name: "李翼",
     role: "CEO / 创始人",
     items: [
@@ -14,6 +18,8 @@ const founders = [
   },
   {
     initial: "朱",
+    avatar: ctoAvatar,
+    avatarClass: "is-cto",
     name: "朱浩朗",
     role: "CTO / 联合创始人",
     items: [
@@ -36,10 +42,12 @@ export function Vertical10Team(props) {
   return (
     <VerticalSection {...props} title="为什么是我们：教育行业老兵 + 顶尖技术团队">
       <div className="v-team">
-        {founders.map(({ initial, name, role, items }) => (
+        {founders.map(({ avatar, avatarClass, name, role, items }) => (
           <article key={name}>
             <div className="v-team-head">
-              <div className="v-team-avatar vertical-body-text">{initial}</div>
+              <div className={`v-team-avatar ${avatarClass}`}>
+                <img src={avatar} alt={`${name}头像`} />
+              </div>
               <div>
                 <h3 className="vertical-body-text v-team-name">{name}</h3>
                 <p className="vertical-caption v-team-role">{role}</p>

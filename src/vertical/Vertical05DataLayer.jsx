@@ -1,4 +1,13 @@
-import { ClipboardCheck, Mic2, Puzzle, ScanLine } from "lucide-react";
+import {
+  Archive,
+  ArrowRight,
+  ClipboardCheck,
+  FileInput,
+  Mic2,
+  Puzzle,
+  ScanLine,
+  UserSearch,
+} from "lucide-react";
 import { VerticalCell, VerticalSection } from "./VerticalShared.jsx";
 
 const data = [
@@ -28,6 +37,27 @@ const data = [
   ],
 ];
 
+const pipeline = [
+  {
+    title: "录入",
+    icon: FileInput,
+    text: "老师用语音、文字、成绩单或作业批改记录，把真实教学事件轻量写入系统。",
+    output: "原始事件",
+  },
+  {
+    title: "LLM 识别学生",
+    icon: UserSearch,
+    text: "模型解析姓名、班级、课程、知识点与情绪线索，并完成学生身份消歧。",
+    output: "结构化标签",
+  },
+  {
+    title: "归档至个人档案",
+    icon: Archive,
+    text: "所有信息沉淀到个人成长档案，成为家长、老师与学生 Agent 的可查询记忆。",
+    output: "长期画像",
+  },
+];
+
 export function Vertical05DataLayer(props) {
   return (
     <VerticalSection {...props} title="数据层：构建更完善的数据库">
@@ -41,11 +71,26 @@ export function Vertical05DataLayer(props) {
           </VerticalCell>
         ))}
       </div>
-      <div className="v-metric-strip">
-        <span>录入</span>
-        <span>LLM 识别学生</span>
-        <span>归档至个人档案</span>
-      </div>
+      <ol className="v-data-pipeline" aria-label="数据进入个人档案的顺序">
+        {pipeline.map(({ title, icon: Icon, text, output }, index) => (
+          <li key={title} className="v-data-step">
+            <div className="v-data-step-head">
+              <Icon className="v-data-step-icon" />
+              <div>
+                <span className="vertical-caption v-data-step-index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="vertical-body-text">{title}</h3>
+              </div>
+            </div>
+            <p className="vertical-caption">{text}</p>
+            <span className="vertical-caption v-data-step-output">{output}</span>
+            {index < pipeline.length - 1 ? (
+              <ArrowRight className="v-data-arrow" aria-hidden="true" />
+            ) : null}
+          </li>
+        ))}
+      </ol>
     </VerticalSection>
   );
 }

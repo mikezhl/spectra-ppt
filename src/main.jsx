@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./index.css";
 import { Vertical01Hero } from "./vertical/Vertical01Hero.jsx";
 import { Vertical02Problem } from "./vertical/Vertical02Problem.jsx";
@@ -23,6 +24,8 @@ import { Slide07Competition } from "./slides/Slide07Competition.jsx";
 import { Slide08Business } from "./slides/Slide08Business.jsx";
 import { Slide09TeamMarket } from "./slides/Slide09TeamMarket.jsx";
 import { Slide10Vision } from "./slides/Slide10Vision.jsx";
+import { Slide11MarketAsk } from "./slides/Slide11MarketAsk.jsx";
+import { Slide12Vision } from "./slides/Slide12Vision.jsx";
 
 const STAGE_WIDTH = 1440;
 const SLIDE_HEIGHT = 810;
@@ -53,6 +56,8 @@ const slideSections = [
   Slide08Business,
   Slide09TeamMarket,
   Slide10Vision,
+  Slide11MarketAsk,
+  Slide12Vision,
 ];
 
 function useWidthScale(width) {
@@ -156,6 +161,8 @@ function VerticalVersion() {
 function SlideVersion({ active, setActive }) {
   const scale = useSlideScale();
   const ActiveSlide = slideSections[active];
+  const goPrevious = () => setActive((value) => Math.max(0, value - 1));
+  const goNext = () => setActive((value) => Math.min(slideSections.length - 1, value + 1));
 
   return (
     <div
@@ -175,6 +182,26 @@ function SlideVersion({ active, setActive }) {
             total={slideSections.length}
           />
         </div>
+      </div>
+      <div className="slide-arrows" aria-label="幻灯片切换">
+        <button
+          className="slide-arrow is-left"
+          type="button"
+          aria-label="上一页"
+          disabled={active === 0}
+          onClick={goPrevious}
+        >
+          <ChevronLeft aria-hidden="true" />
+        </button>
+        <button
+          className="slide-arrow is-right"
+          type="button"
+          aria-label="下一页"
+          disabled={active === slideSections.length - 1}
+          onClick={goNext}
+        >
+          <ChevronRight aria-hidden="true" />
+        </button>
       </div>
       <div className="slide-dots" aria-label="幻灯片进度">
         {slideSections.map((_, index) => (

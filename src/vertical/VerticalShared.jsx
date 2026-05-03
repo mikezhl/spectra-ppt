@@ -2,14 +2,16 @@ import { CheckCircle2 } from "lucide-react";
 
 export function VerticalSection({ index, total, title, children, className = "" }) {
   return (
-    <section className={`vertical-section ${className}`} data-v-reveal>
-      <aside className="vertical-aside">
-        <div className="vertical-rule" />
+    <section className={`vertical-section ${className}`}>
+      <header className="vertical-section-head">
+        <div className="vertical-section-kicker">
+          <div className="vertical-rule" />
+          <p className="vertical-caption vertical-index">
+            {String(index).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </p>
+        </div>
         <h2 className="vertical-title">{title}</h2>
-        <p className="vertical-caption vertical-index">
-          {String(index).padStart(2, "0")} / {String(total).padStart(2, "0")}
-        </p>
-      </aside>
+      </header>
       <div className="vertical-body">{children}</div>
     </section>
   );
@@ -18,9 +20,13 @@ export function VerticalSection({ index, total, title, children, className = "" 
 export function VerticalCell({ title, children, meta, icon: Icon }) {
   return (
     <article className="v-cell">
-      {Icon ? <Icon className="v-icon" /> : null}
-      {meta ? <p className="vertical-caption v-meta">{meta}</p> : null}
-      <h3 className="vertical-body-text v-cell-title">{title}</h3>
+      <header className="v-cell-head">
+        {Icon ? <Icon className="v-icon" /> : null}
+        <div>
+          {meta ? <p className="vertical-caption v-meta">{meta}</p> : null}
+          <h3 className="vertical-body-text v-cell-title">{title}</h3>
+        </div>
+      </header>
       {children ? <div className="vertical-caption v-cell-copy">{children}</div> : null}
     </article>
   );

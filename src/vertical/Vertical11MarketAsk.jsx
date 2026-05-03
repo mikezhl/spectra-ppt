@@ -7,7 +7,6 @@ const tiers = [
 ];
 
 const askLines = [
-  ["融资金额", "200 万人民币"],
   ["出让股权", "5%"],
   ["投后估值", "~ 4,000 万"],
   ["资金用途", "产品研发 · 学校拓展 · 团队扩充"],
@@ -17,7 +16,7 @@ const askLines = [
 export function Vertical11MarketAsk(props) {
   return (
     <VerticalSection {...props} title="市场规模与融资需求">
-      <p className="vertical-caption" style={{ margin: "0 0 30px", color: "var(--muted)" }}>
+      <p className="vertical-caption" style={{ margin: "0 0 26px", color: "var(--muted)" }}>
         AI 教育正从工具走向基础设施，市场快速增长。
       </p>
       <div className="v-market-split">
@@ -30,13 +29,13 @@ export function Vertical11MarketAsk(props) {
             </div>
           ))}
         </div>
-        <div className="v-market-col">
+        <div className="v-market-col is-ask">
           <h3 className="vertical-body-text">融资需求</h3>
           <div className="v-ask">
-            <p className="v-ask-big vertical-title">200 万</p>
-            <p className="vertical-caption" style={{ opacity: 0.85, margin: 0 }}>
-              人民币 · 出让 5% 股权
-            </p>
+            <div className="v-ask-summary">
+              <p className="v-ask-big">200 万</p>
+              <p className="vertical-caption">人民币 · Angel Round</p>
+            </div>
             {askLines.map(([k, v]) => (
               <div className="v-ask-line vertical-caption" key={k}>
                 <span>{k}</span>

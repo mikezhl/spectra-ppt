@@ -1,5 +1,5 @@
 import { BookOpen, Building2, UserRound, UsersRound } from "lucide-react";
-import { VerticalList, VerticalSection } from "./VerticalShared.jsx";
+import { VerticalCell, VerticalList, VerticalSection } from "./VerticalShared.jsx";
 
 const agents = [
   {
@@ -57,12 +57,9 @@ export function Vertical06AgentLayer(props) {
       </p>
       <div className="v-grid-2x2">
         {agents.map(({ title, meta, icon: Icon, items }) => (
-          <article key={title} className="v-cell">
-            <Icon className="v-icon" />
-            <p className="vertical-caption v-meta">{meta}</p>
-            <h3 className="vertical-body-text v-cell-title">{title}</h3>
+          <VerticalCell key={title} title={title} meta={meta} icon={Icon}>
             <VerticalList items={items} />
-          </article>
+          </VerticalCell>
         ))}
       </div>
     </VerticalSection>

@@ -24,7 +24,15 @@ const drivers = [
 
 export function Vertical03WhyNow(props) {
   return (
-    <VerticalSection {...props} title="为什么是现在：AI 改变了所有行业，唯独教育还没被触及">
+    <VerticalSection
+      {...props}
+      title={
+        <>
+          为什么是现在：AI 改变了所有行业，<br />
+          唯独教育还没被触及
+        </>
+      }
+    >
       <div className="v-grid-three">
         {drivers.map(([meta, title, icon, text]) => (
           <VerticalCell key={title} title={title} meta={meta} icon={icon}>
