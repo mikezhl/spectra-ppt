@@ -15,7 +15,7 @@ const rows = [
 export function Vertical08Competition(props) {
   return (
     <VerticalSection {...props} title="竞争格局：AI Agent 教务中台是无人区">
-      <p className="vertical-caption" style={{ margin: "0 0 26px", color: "var(--muted)" }}>
+      <p className="vertical-caption vertical-lede">
         第一层（IB 课程管理）与第二层（本土校务 SaaS）之间存在产品哲学的代差 —
         一层是&ldquo;让老师在系统里填表&rdquo;，我们要做的第三层是&ldquo;让 Agent 替老师干活&rdquo;。
       </p>
@@ -33,7 +33,7 @@ export function Vertical08Competition(props) {
           </div>
         ))}
       </div>
-      <div className="v-biz-grid" style={{ marginTop: 36 }}>
+      <div className="v-biz-grid v-competition-notes">
         <article>
           <h3 className="vertical-body-text">vs ManageBac：补中国那一半</h3>
           <p className="vertical-caption">

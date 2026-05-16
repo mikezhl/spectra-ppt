@@ -4,13 +4,13 @@ export function VerticalSection({ index, total, title, children, className = "" 
   return (
     <section className={`vertical-section ${className}`}>
       <header className="vertical-section-head">
+        <h2 className="vertical-title">{title}</h2>
         <div className="vertical-section-kicker">
-          <div className="vertical-rule" />
           <p className="vertical-caption vertical-index">
             {String(index).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </p>
+          <div className="vertical-rule" />
         </div>
-        <h2 className="vertical-title">{title}</h2>
       </header>
       <div className="vertical-body">{children}</div>
     </section>

@@ -52,7 +52,7 @@ const agents = [
 export function Vertical06AgentLayer(props) {
   return (
     <VerticalSection {...props} title="Agent 层：每个人都有专属 Agent">
-      <p className="vertical-caption" style={{ margin: "0 0 30px", color: "var(--muted)" }}>
+      <p className="vertical-caption vertical-lede">
         Agent 访问数据库，为家长、老师、学生与管理层提供个性化服务。
       </p>
       <div className="v-grid-2x2">

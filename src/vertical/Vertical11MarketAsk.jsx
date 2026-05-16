@@ -16,7 +16,7 @@ const askLines = [
 export function Vertical11MarketAsk(props) {
   return (
     <VerticalSection {...props} title="市场规模与融资需求">
-      <p className="vertical-caption" style={{ margin: "0 0 26px", color: "var(--muted)" }}>
+      <p className="vertical-caption vertical-lede">
         AI 教育正从工具走向基础设施，市场快速增长。
       </p>
       <div className="v-market-split">

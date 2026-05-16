@@ -40,7 +40,7 @@ export function Vertical04Era(props) {
           <article key={title} className={index === 2 ? "is-current" : ""}>
             <p className="vertical-caption">{time}</p>
             <h3 className="vertical-body-text">{title}</h3>
-            <ul className="v-list" style={{ marginTop: 18 }}>
+            <ul className="v-list v-era-list">
               {items.map((item) => (
                 <li key={item} className="vertical-caption">
                   <span>· {item}</span>

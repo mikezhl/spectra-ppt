@@ -61,7 +61,7 @@ const pipeline = [
 export function Vertical05DataLayer(props) {
   return (
     <VerticalSection {...props} title="数据层：构建更完善的数据库">
-      <p className="vertical-caption" style={{ margin: "0 0 30px", color: "var(--muted)" }}>
+      <p className="vertical-caption vertical-lede">
         传统系统只录入成绩和出勤，我们覆盖全维度信息。
       </p>
       <div className="v-grid-four">

@@ -65,20 +65,13 @@ export function Vertical10Team(props) {
       </div>
       <div className="v-team-why">
         <h3 className="vertical-body-text">为什么是我们来做？</h3>
-        <div className="v-grid-four" style={{ borderTop: 0, borderLeft: 0 }}>
+        <div className="v-grid-four v-reason-grid">
           {reasons.map(([title, text]) => (
-            <div
-              key={title}
-              style={{
-                padding: "20px 24px",
-                borderRight: "1px solid var(--line)",
-                background: "var(--white)",
-              }}
-            >
-              <p className="vertical-caption" style={{ color: "var(--blue)", fontWeight: 780, margin: 0 }}>
+            <div key={title} className="v-reason-card">
+              <p className="vertical-caption v-reason-title">
                 {title}
               </p>
-              <p className="vertical-caption" style={{ color: "var(--muted)", margin: "8px 0 0" }}>
+              <p className="vertical-caption v-reason-copy">
                 {text}
               </p>
             </div>

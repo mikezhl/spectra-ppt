@@ -25,7 +25,7 @@ export function Vertical09Business(props) {
             <span className="v-pill vertical-caption">行为习惯</span>
             <span className="v-pill vertical-caption">信任关系</span>
           </div>
-          <p className="vertical-caption" style={{ marginTop: 16 }}>
+          <p className="vertical-caption v-switching-copy">
             三层叠加，切换成本随时间指数增长。
           </p>
         </article>
