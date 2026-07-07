@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .a,
+    .b,
+    .c {
+      fill: #000000;
+      stroke: #ffffff;
+      stroke-width: 7;
+      stroke-linejoin: round;
+      paint-order: stroke fill;
+    }
+    .dot { fill: #ffffff; }
+    @media (prefers-color-scheme: dark) {
+      .a,
+      .b,
+      .c {
+        fill: #ffffff;
+        stroke: #000000;
+      }
+      .dot { fill: #000000; }
+    }
+  </style>
+  <g>
+    <rect class="a" x="47" y="43" width="107" height="32" rx="16" />
+    <rect class="b" x="24" y="84" width="107" height="32" rx="16" />
+    <rect class="c" x="47" y="124" width="107" height="32" rx="16" />
+    <circle class="dot" cx="127" cy="59" r="8" />
+    <circle class="dot" cx="118" cy="140" r="8" />
+    <circle class="dot" cx="137" cy="140" r="8" />
+  </g>
+</svg>
