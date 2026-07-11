@@ -869,9 +869,92 @@ button {
     margin-bottom: 0.75rem;
   }
 
+  .alloc-grid,
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .kpi-strip {
+    margin-top: 2.5rem;
+  }
+
   .deck-ui {
     display: none !important;
   }
+}
+
+/* —— 最后一页：资金配置 + KPI —— */
+.slide-shell--deploy {
+  padding-top: 10vh;
+}
+
+.slide-shell--deploy .slide-title {
+  margin-bottom: 3.25rem;
+}
+
+.alloc-grid {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.alloc-card {
+  padding: 1.75rem 2rem;
+}
+
+.alloc-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.alloc-pct {
+  font-family: var(--spectra-mono);
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--spectra-text-primary);
+}
+
+.deck-frame .alloc-label {
+  margin: 0;
+  font-weight: 500 !important;
+}
+
+.kpi-strip {
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--spectra-line);
+}
+
+.kpi-strip-kicker {
+  margin-bottom: 1.5rem;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.deck-frame .kpi-value {
+  font-family: var(--spectra-mono);
+  font-size: 1.65rem;
+  line-height: 1.2;
+  color: var(--spectra-text-primary) !important;
+  margin: 0 0 0.45rem;
+}
+
+.deck-frame .kpi-desc {
+  font-size: 0.98rem !important;
+  line-height: 1.5;
+  color: var(--spectra-text-secondary) !important;
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
