@@ -45,11 +45,7 @@ const kpis = [
 export default function Slide10() {
   return (
     <SlideShell className="slide-shell--deploy">
-      <motion.p {...fade(0.1)} className="slide-kicker">
-        融资规划 — 战略资金配置（¥200 万 · 出让 5%）
-      </motion.p>
-
-      <SlideTitle delay={0.18}>6 个月部署与 KPI</SlideTitle>
+      <SlideTitle delay={0.15}>6 个月部署与 KPI</SlideTitle>
 
       <div className="alloc-grid">
         {allocations.map((a, i) => (
